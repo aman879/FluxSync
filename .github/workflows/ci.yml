@@ -13,9 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Rust (2024 Edition)
         uses: dtolnay/rust-toolchain@stable
-        with:
-          toolchain: 1.85.0
-          components: clippy, rustfmt
+        uses: Swatinem/rust-cache@v2
 
       - name: Security Audit
         run: cargo install cargo-audit && cargo audit
