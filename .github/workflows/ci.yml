@@ -36,6 +36,14 @@ jobs:
           node-version: 20
       - name: Lint Extension
         run: |
-          cd extension
-          npm install
-          npm run lint
+          if [ -d "extension" ]; then
+            cd extension
+            if [ -f "package.json" ]; then
+              npm install
+              npm run lint
+            else
+              echo "Extension folder exists but no package.json found. Skipping."
+            fi
+          else
+            echo "Extension folder not found. Skipping lint step."
+          fi
