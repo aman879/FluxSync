@@ -1,0 +1,41 @@
+name: FluxSync CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  rust-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust (2024 Edition)
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.85.0
+          components: clippy, rustfmt
+
+      - name: Security Audit
+        run: cargo install cargo-audit && cargo audit
+
+      - name: Run SDK Tests
+        run: |
+          cd crates/flux-sdk
+          cargo fmt --all -- --check
+          cargo clippy -- -D warnings
+          cargo test
+
+  extension-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Lint Extension
+        run: |
+          cd extension
+          npm install
+          npm run lint
