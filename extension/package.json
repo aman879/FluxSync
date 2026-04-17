@@ -1,0 +1,43 @@
+{
+  "name": "flux-sync",
+  "displayName": "FluxSync",
+  "version": "1.0.0",
+  "description": "Universal Agnetic Bridge for AI CLIs",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "flux-sync.reviewProposal",
+        "title": "FluxSync: Review Pending Proposal"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext .ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^25.6.0",
+    "@types/vscode": "^1.116.0",
+    "eslint": "^10.2.0",
+    "typescript": "^6.0.3"
+  }
+}
