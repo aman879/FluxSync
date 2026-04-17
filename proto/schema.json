@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FluxProposal",
+  "description": "The atomic data contract between CLI agents and the IDE.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "tool_name": { "type": "string" },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string" },
+          "base_hash": { "type": "string" },
+          "hunks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "diff": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["id", "tool_name", "changes"]
+}

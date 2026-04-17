@@ -1,0 +1,17 @@
+[workspace]
+members = [
+    "crates/flux-sdk",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+authors = ["Aman Kumar"]
+edition = "2024"
+license = "MIT"
+
+[workspace.dependencies]
+serde = { version = "1.0.228", features = ["derive"] }
+anyhow = "1.0.102"
+serde_json = "1.0.149"
+tempfile = "3.27.0"
