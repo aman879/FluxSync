@@ -30,9 +30,9 @@ impl fmt::Display for ProposalId {
 
 /// A validated SHA-256 hash string
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
-pub struct Hash(String);
+pub struct Sha256(String);
 
-impl Hash {
+impl Sha256 {
     /// Creates a new hash and validates it is a hex-encoded SHA-256 string
     pub fn new(hash: impl Into<String>) -> Result<Self, &'static str> {
         let s = hash.into();
@@ -74,7 +74,7 @@ pub struct FileChange {
     pub file_path: ProjectPath,
     /// The SHA-256 hash of the file *before* the agent made modifications
     /// This is used for Compare-And-Swap(CAS) verification to prevent race conditions
-    pub base_hash: Hash,
+    pub base_hash: Sha256,
     /// An array of hunks to be applied to this file
     pub hunks: Vec<FluxHunk>,
 }
