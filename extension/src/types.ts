@@ -35,7 +35,7 @@ export const FluxHunkSchema = z.object({
 // The File Change Schema
 export const FileChangeSchema = z.object({
     file_path: ProjectPathSchema,
-    bash_hash: Sha256Schema,
+    base_hash: Sha256Schema,
     hunks: z.array(FluxHunkSchema)
 });
 
